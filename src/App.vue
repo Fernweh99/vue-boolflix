@@ -3,6 +3,7 @@
     <BaseHeader @btn-search-click="setQueryAndSearch"/>
     <main>
       <SectionMovies :searchArray="movies"/>
+      <SectionMovies :searchArray="series"/>
     </main>
   </div>
 </template>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       movies: [],
+      series: [],
       baseUrl: "https://api.themoviedb.org/3",
       query: "",
     }
@@ -34,7 +36,13 @@ export default {
           return item = {title: item.title, original_title: item.original_title, language: item.original_language, vote: item.vote_average};
         })
       })
-    }
+      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=a69091a486f611ccfdfadd6ece3af0c2&query=${this.query}&language=it-IT`)
+      .then(res => {
+        this.series = res.data.results.map((item)=>{
+          return item = {title: item.name, original_title: item.original_name, language: item.original_language, vote: item.vote_average};
+        })
+      })
+    },
   },
 }
 </script>
