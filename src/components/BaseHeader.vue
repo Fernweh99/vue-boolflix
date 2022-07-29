@@ -1,6 +1,6 @@
 <template>
   <header>
-    <input type="text" v-model="searchText" placeholder="Cerca un film o una serie Tv">
+    <input @keyup.enter="emitSearchText" type="text" v-model="searchText" placeholder="Cerca un film o una serie Tv">
     <button @click="emitSearchText">Vai</button>
   </header>
 </template>
