@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="cs_card">
     <img class="background" :src="srcPost" alt="poster">
     <div class="content">
       <p>{{ title }}</p>
@@ -56,7 +56,7 @@ export default {
 </script>
   
 <style lang="scss">
-  .card {
+  .cs_card {
     position: relative;
     height:500px;
     width: 342px;

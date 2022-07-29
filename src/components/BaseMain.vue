@@ -1,12 +1,16 @@
 <template>
   <div class="container">
-    <h3>Movies</h3>
-    <div v-for="movie in movies" :key="movie.id">
-      <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
+    <h3 class="text-center">Movies</h3>
+    <div class="row row-cols-3">
+      <div class="col" v-for="movie in movies" :key="movie.id">
+        <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
+      </div>
     </div>
-    <h3>Series</h3>
-    <div v-for="serie in series" :key="serie.id">
-      <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
+    <h3 class="text-center">Series</h3>
+    <div class="row row-cols-3">
+      <div class="col" v-for="serie in series" :key="serie.id">
+        <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
+      </div>
     </div>
   </div>
 </template>

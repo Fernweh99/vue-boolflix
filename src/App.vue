@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="boolflix">
     <BaseHeader @btn-search-click="setQueryAndSearch"/>
     <main>
       <BaseMain :movies="movies" :series="series"/>
@@ -46,5 +46,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import "./assets/scss/style.scss";
+  #boolflix {
+    padding-top: 70px;
+  }
 </style>

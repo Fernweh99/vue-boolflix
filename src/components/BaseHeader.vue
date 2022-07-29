@@ -1,26 +1,43 @@
 <template>
   <header>
-    <input @keyup.enter="emitSearchText" type="text" v-model="searchText" placeholder="Cerca un film o una serie Tv">
-    <button @click="emitSearchText">Vai</button>
+    <div class="container h-100">
+      <div class="h-100 row align-items-center">
+        <div class="col">
+          <h3 class="text-danger">BoolFlix</h3>
+        </div>
+        <div class="col text-end">
+          <SelectComponent @btn-search-click="emitSearchText"/>
+        </div>
+      </div>
+    </div>
   </header>
 </template>
 
 <script>
+import SelectComponent from "./SelectComponent.vue"
+
 export default {
   name: "BaseHeader",
-  data() {
-    return {
-      searchText: ""
-    }
+  components: {
+    SelectComponent,
   },
   methods: {
-    emitSearchText () {
-      this.$emit("btn-search-click", this.searchText)
+    emitSearchText (search) {
+    this.$emit("btn-search-click", search)
     }
   }
 }
 </script>
 
 <style>
+  header {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: rgba(42, 42, 42, 0.577);
 
+  }
 </style>
