@@ -6,7 +6,7 @@
       <p>{{ original_title }}</p>
       <img v-if="hasFlag" class="flag" :src="srcFlag" :alt="'flag '+language">
       <p v-else>{{ language }}</p>
-      <p>{{ vote }}</p>
+      <p>{{ getNumberForStars }}</p>
     </div>
   </div>
 </template>
@@ -32,6 +32,9 @@ export default {
     srcPost() {
       if (this.poster)return `https://image.tmdb.org/t/p/w342${this.poster}?api_key=a69091a486f611ccfdfadd6ece3af0c2`
       else return "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+    },
+    getNumberForStars() {
+      return Math.ceil(Math.ceil(this.vote)/2)
     }
   }
 }
@@ -48,6 +51,7 @@ export default {
       z-index: -1;
       top: 0;
       bottom: 0;
+      height: 100%;
       width: 342px;
     }.content {
       overflow: auto;
