@@ -1,18 +1,23 @@
 <template>
-  <div class="container">
-    <h3 class="text-center">Movies</h3>
-    <div class="row row-cols-3">
-      <div class="col" v-for="movie in movies" :key="movie.id">
-        <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
+  <main class="py-5">
+    <div v-if="!isOnSearch" class="before-search">
+      <h2 class="display-3">Cerca un Film o una Serie</h2>
+    </div>
+    <div v-else class="container">
+      <h3 class="text-center">Movies</h3>
+      <div class="row row-cols-4 g-0 gy-5">
+        <div class="col" v-for="movie in movies" :key="movie.id">
+          <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
+        </div>
+      </div>
+      <h3 class="text-center">Series</h3>
+      <div class="row row-cols-4 g-0 gy-5">
+        <div class="col" v-for="serie in series" :key="serie.id">
+          <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
+        </div>
       </div>
     </div>
-    <h3 class="text-center">Series</h3>
-    <div class="row row-cols-3">
-      <div class="col" v-for="serie in series" :key="serie.id">
-        <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
-      </div>
-    </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -26,6 +31,7 @@ export default {
   props: {
     movies: Array,
     series: Array,
+    isOnSearch: String,
   },
   data() {
     return {
@@ -36,8 +42,19 @@ export default {
 }
 </script>
 
-<style>
-  .card {
-    position: relative;
+<style lang="scss">
+  main {
+    background-color: rgba(47, 41, 41, 0.937);
+    min-height: 100%;
+    display: flex;
+    .before-search {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .col {
+      padding: 0 3px;
+    }
   }
 </style>

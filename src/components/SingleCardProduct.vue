@@ -59,20 +59,26 @@ export default {
   .cs_card {
     position: relative;
     height:500px;
-    width: 342px;
-    margin: 40px 0;
+    max-width: 100%;
     .background {
       position: absolute;
-      z-index: -1;
+      z-index: 0;
       top: 0;
       bottom: 0;
       height: 100%;
-      width: 342px;
+      max-width: 100%;
+      border-radius: 7px;
     }.content {
+      display: none;
+      position: relative;
+      z-index: 1;
       overflow: auto;
+      transition: all 0.5ms;
       .flag {
         width: 50px
       }
-    }
+    } 
+  }.cs_card:hover .content {
+    display: block;
   }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <div id="boolflix">
     <BaseHeader @btn-search-click="setQueryAndSearch"/>
-    <main>
-      <BaseMain :movies="movies" :series="series"/>
-    </main>
+    <BaseMain :movies="movies" :series="series" :isOnSearch="query"/>
   </div>
 </template>
 
@@ -47,7 +45,14 @@ export default {
 
 <style lang="scss">
 @import "./assets/scss/style.scss";
+  html {
+    height: 100%;
+  }
+  body{
+    height: 100%;
+  }
   #boolflix {
     padding-top: 70px;
+    height:100%
   }
 </style>
