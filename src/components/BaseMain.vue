@@ -4,18 +4,20 @@
       <h2 class="display-3">Cerca un Film o una Serie</h2>
     </div>
     <div v-else class="container">
-      <h3 class="text-center">Movies</h3>
-      <div class="row row-cols-4 g-0 gy-5">
+      <h3 class="text-center display-2 text-white mb-5">Film</h3>
+      <div v-if="movies.length > 0" class="row row-cols-4 g-0 gy-5">
         <div class="col" v-for="movie in movies" :key="movie.id">
           <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
         </div>
       </div>
-      <h3 class="text-center">Series</h3>
-      <div class="row row-cols-4 g-0 gy-5">
+      <div v-else class="text-center"><h1>NESSUN FILM TROVATO!</h1></div>
+      <h3 class="text-center display-2 text-white my-5">Series</h3>
+      <div v-if="series.length > 0" class="row row-cols-4 g-0 gy-5">
         <div class="col" v-for="serie in series" :key="serie.id">
           <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
         </div>
       </div>
+      <div v-else class="text-center"><h1>NESSUNA SERIE TROVATA!</h1></div>
     </div>
   </main>
 </template>

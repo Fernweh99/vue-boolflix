@@ -1,12 +1,15 @@
 <template>
-  <div class="cs_card">
+  <div class="cs_card"
+  @mouseover="hover=true" 
+  @mouseleave="hover=false" >
     <img class="background" :src="srcPost" alt="poster">
-    <div class="content">
-      <p>{{ title }}</p>
-      <p>{{ original_title }}</p>
-      <img v-if="hasFlag" class="flag" :src="srcFlag" :alt="'flag '+language">
-      <p v-else>{{ language }}</p>
+    <div v-show="hover==true" class="content">
+      <h3>Titolo:</h3><span>{{ title }}</span>
+      <h3>Titolo Originale:</h3><span>{{ original_title }}</span>
+      <h3>Lingua Originale:</h3><img v-if="hasFlag" class="flag" :src="srcFlag" :alt="'flag '+language">
+      <span v-else>{{ language }}</span>
       <div>
+        <h3>Valutazione:</h3>
         <svg v-for="(star , i) in maxRating" :key="i" xmlns="http://www.w3.org/2000/svg" width="16" height="16" :fill="isStar(i)" class="bi bi-star-fill" viewBox="0 0 16 16">
           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>
@@ -28,6 +31,7 @@ export default {
   data() {
     return {
       maxRating: ["false", "false", "false", "false", "false"],
+      hover: false,
     }
   },
   computed: {
@@ -48,7 +52,7 @@ export default {
   },
   methods: {
     isStar(i) {
-      if(i < this.getNumberForStars) return "black"
+      if(i < this.getNumberForStars) return "yellow"
       else return "white"
     }
   }
@@ -60,6 +64,12 @@ export default {
     position: relative;
     height:500px;
     max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 7px;
+    cursor: pointer;
     .background {
       position: absolute;
       z-index: 0;
@@ -69,16 +79,20 @@ export default {
       max-width: 100%;
       border-radius: 7px;
     }.content {
-      display: none;
+      display: block;
+      color: white;
       position: relative;
-      z-index: 1;
+      text-align: center;
       overflow: auto;
-      transition: all 0.5ms;
+      h3 {
+        margin: 10px 0;
+        color: red
+      }
       .flag {
         width: 50px
       }
-    } 
-  }.cs_card:hover .content {
-    display: block;
+    }
+  }.cs_card:hover .background {
+    opacity: 0.3;
   }
 </style>

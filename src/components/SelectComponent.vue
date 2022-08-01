@@ -16,6 +16,7 @@ export default {
   methods: {
     emitSearchText () {
       this.$emit("btn-search-click", this.searchText)
+      this.searchText = "";
     }
   }
 }
