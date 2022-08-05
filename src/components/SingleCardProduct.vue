@@ -4,15 +4,25 @@
   @mouseleave="hover=false" >
     <img class="background" :src="srcPost" alt="poster">
     <div v-show="hover==true" class="content">
-      <h3>Titolo:</h3><span>{{ title }}</span>
-      <h3>Titolo Originale:</h3><span>{{ original_title }}</span>
-      <h3>Lingua Originale:</h3><img v-if="hasFlag" class="flag" :src="srcFlag" :alt="'flag '+language">
-      <span v-else>{{ language }}</span>
       <div>
-        <h3>Valutazione:</h3>
+        <h4>Titolo:</h4><span>{{ title }}</span>
+      </div>
+      <div>
+        <h4>Titolo Originale:</h4><span>{{ original_title }}</span>
+      </div>
+      <div>
+        <h4>Lingua Originale:</h4><img v-if="hasFlag" class="flag" :src="srcFlag" :alt="'flag '+language">
+        <span v-else>{{ language }}</span>
+      </div>
+      <div>
+        <h4>Valutazione:</h4>
         <svg v-for="(star , i) in maxRating" :key="i" xmlns="http://www.w3.org/2000/svg" width="16" height="16" :fill="isStar(i)" class="bi bi-star-fill" viewBox="0 0 16 16">
           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>
+      </div>
+      <div>
+        <h4>Overview:</h4>
+        <span>{{ overview }}</span>
       </div>
     </div>
   </div>
@@ -27,6 +37,7 @@ export default {
     language: String,
     vote: Number,
     poster: String,
+    overview: String,
   },
   data() {
     return {
@@ -64,9 +75,6 @@ export default {
     position: relative;
     height:500px;
     max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: black;
     border-radius: 7px;
     cursor: pointer;
@@ -79,14 +87,17 @@ export default {
       max-width: 100%;
       border-radius: 7px;
     }.content {
+      height: 100%;
       display: block;
       color: white;
       position: relative;
-      text-align: center;
+      padding: 25px;
+
       overflow: auto;
-      h3 {
+      h4 {
         margin: 10px 0;
-        color: red
+        color: red;
+        display: inline-block;
       }
       .flag {
         width: 50px

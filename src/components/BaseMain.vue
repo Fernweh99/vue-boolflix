@@ -5,16 +5,16 @@
     </div>
     <div v-else class="container">
       <h3 class="text-center display-2 text-white mb-5">Film</h3>
-      <div v-if="movies.length > 0" class="row row-cols-4 g-0 gy-5">
+      <div v-if="movies.length > 0" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
         <div class="col" v-for="movie in movies" :key="movie.id">
-          <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path"/>
+          <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path" :overview="movie.overview"/>
         </div>
       </div>
       <div v-else class="text-center"><h1>NESSUN FILM TROVATO!</h1></div>
       <h3 class="text-center display-2 text-white my-5">Series</h3>
-      <div v-if="series.length > 0" class="row row-cols-4 g-0 gy-5">
+      <div v-if="series.length > 0" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
         <div class="col" v-for="serie in series" :key="serie.id">
-          <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path"/>
+          <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path" :overview="serie.overview"/>
         </div>
       </div>
       <div v-else class="text-center"><h1>NESSUNA SERIE TROVATA!</h1></div>
