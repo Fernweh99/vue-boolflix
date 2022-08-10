@@ -1,9 +1,7 @@
 <template>
-  <div class="cs_card"
-  @mouseover="hover=true" 
-  @mouseleave="hover=false" >
+  <div class="cs_card">
     <img class="background" :src="srcPost" alt="poster">
-    <div v-show="hover==true" class="content">
+    <div class="content">
       <div>
         <h4>Titolo:</h4><span>{{ title }}</span>
       </div>
@@ -16,7 +14,7 @@
       </div>
       <div>
         <h4>Valutazione:</h4>
-        <svg v-for="(star , i) in maxRating" :key="i" xmlns="http://www.w3.org/2000/svg" width="16" height="16" :fill="isStar(i)" class="bi bi-star-fill" viewBox="0 0 16 16">
+        <svg v-for="(star , i) in maxRating" :key="i" xmlns="http://www.w3.org/2000/svg" width="16" height="16" :fill="isYellowStar(i)" class="bi bi-star-fill" viewBox="0 0 16 16">
           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>
       </div>
@@ -41,7 +39,7 @@ export default {
   },
   data() {
     return {
-      maxRating: ["false", "false", "false", "false", "false"],
+      maxRating: 5,
       hover: false,
     }
   },
@@ -62,7 +60,7 @@ export default {
     },
   },
   methods: {
-    isStar(i) {
+    isYellowStar(i) {
       if(i < this.getNumberForStars) return "yellow"
       else return "white"
     }
@@ -77,6 +75,7 @@ export default {
     max-width: 100%;
     background-color: black;
     border-radius: 7px;
+    overflow: hidden;
     cursor: pointer;
     .background {
       position: absolute;
@@ -86,13 +85,15 @@ export default {
       height: 100%;
       max-width: 100%;
       border-radius: 7px;
+      transition: opacity 0.4s;
     }.content {
       height: 100%;
       display: block;
       color: white;
       position: relative;
       padding: 25px;
-
+      transform: translateX(-100%);
+      transition: transform 0.6s;
       overflow: auto;
       h4 {
         margin: 10px 0;
@@ -105,5 +106,8 @@ export default {
     }
   }.cs_card:hover .background {
     opacity: 0.3;
+  }
+  .cs_card:hover .content {
+    transform: translateX(0%);
   }
 </style>

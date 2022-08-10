@@ -3,16 +3,16 @@
     <div v-if="!isOnSearch" class="before-search">
       <h2 class="display-3">Cerca un Film o una Serie</h2>
     </div>
-    <div v-else class="container">
+    <div v-else class="container overflow-hidden">
       <h3 class="text-center display-2 text-white mb-5">Film</h3>
-      <div v-if="movies.length > 0" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
+      <div v-if="movies.length > 0" class="row cs_row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
         <div class="col" v-for="movie in movies" :key="movie.id">
           <SingleCardProduct :title="movie.title" :original_title="movie.original_title" :vote="movie.vote_average" :language="movie.original_language" :poster="movie.poster_path" :overview="movie.overview"/>
         </div>
       </div>
       <div v-else class="text-center"><h1>NESSUN FILM TROVATO!</h1></div>
       <h3 class="text-center display-2 text-white my-5">Series</h3>
-      <div v-if="series.length > 0" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
+      <div v-if="series.length > 0" class="row cs_row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
         <div class="col" v-for="serie in series" :key="serie.id">
           <SingleCardProduct :title="serie.name" :original_title="serie.original_name" :vote="serie.vote_average" :language="serie.original_language" :poster="serie.poster_path" :overview="serie.overview"/>
         </div>
@@ -55,8 +55,13 @@ export default {
       justify-content: center;
       align-items: center;
     }
-    .col {
-      padding: 0 3px;
+    .cs_row {
+      flex-wrap: nowrap;
+      margin: 0 -10px;
+      overflow: scroll;
+      .col {
+        padding: 0 3px;
+      }
     }
   }
 </style>
