@@ -1,5 +1,5 @@
 <template>
-  <div class="cs_card">
+  <div :id="id" class="cs_card">
     <img class="background" :src="srcPost" alt="poster">
     <div class="content">
       <div>
@@ -30,6 +30,7 @@
 export default {
   name: 'SingleCardProduct',
   props: {
+    id: Number,
     title: String,
     original_title: String,
     language: String,

@@ -6,7 +6,7 @@
           <h3 class="text-danger">BoolFlix</h3>
         </div>
         <div class="col text-end">
-          <SelectComponent @btn-search-click="emitSearchText"/>
+          <SearchTextComponent @btn-search-click="emitSearchText"/>
         </div>
       </div>
     </div>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import SelectComponent from "./SelectComponent.vue"
+import SearchTextComponent from "./SearchTextComponent.vue"
 
 export default {
   name: "BaseHeader",
   components: {
-    SelectComponent,
-  },
+    SearchTextComponent,
+},
   methods: {
     emitSearchText (search) {
     this.$emit("btn-search-click", search)
