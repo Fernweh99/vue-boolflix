@@ -6,7 +6,7 @@
     <div v-else class="container">
       <h2 class="display-3 text-white mb-5">Hai cercato: {{ isOnSearch }}</h2>
       <h3 class="text-center display-2 text-white mb-5">Film</h3>
-      <SelectComponent @change-value="setValueMovieSelect" :genreOf="movie"/>
+      <SelectComponent @change-value="setValueMovieSelect" genreOf="movie" :genres="movieGenres"/>
       <div class="position-relative">
         <!-- <Btn-slider v-if="movies.length > 0" direction="left"/> -->
         <div id="movies" v-if="filteredMovies.length > 0" class="row cs_row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
@@ -18,7 +18,7 @@
         <!-- <Btn-slider v-if="movies.length > 0" direction="right"/> -->
       </div>
       <h3 class="text-center display-2 text-white my-5">Series</h3>
-      <SelectComponent @change-value="setValueSeriesSelect" genreOf="tv"/>
+      <SelectComponent @change-value="setValueSeriesSelect" genreOf="tv" :genres="serieGenres"/>
       <div class="position-relative">
         <!-- <Btn-slider v-if="series.length > 0" direction="left"/> -->
         <div id="series" v-if="filteredSeries.length > 0" class="row cs_row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 gy-5">
@@ -75,6 +75,28 @@ export default {
         if (this.valueOptionSeries == "") return true;
         return (serie.genre_ids.includes(this.valueOptionSeries))
       })
+    },
+    movieGenres() {
+      const genres = []
+      this.movies.forEach(movie => {
+        if (movie.genre_ids.length > 0) {
+          movie.genre_ids.forEach(genre => {
+            genres.push(genre)
+          })
+        }
+      });
+      return new Set(genres)
+    },
+    serieGenres() {
+      const genres = []
+      this.series.forEach(serie => {
+        if (serie.genre_ids.length > 0) {
+          serie.genre_ids.forEach(genre => {
+            genres.push(genre)
+          })
+        }
+      });
+      return new Set(genres)
     }
   }
 }

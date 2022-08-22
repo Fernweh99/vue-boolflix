@@ -1,7 +1,7 @@
 <template>
   <select @change="emitValue" v-model="value" name="" id="">
     <option value="">Filtra per Genere</option>
-    <option v-for="genre in genres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
+    <option v-for="genre in genress" v-show="getGen.includes(genre.id)" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
   </select>
 </template>
 
@@ -9,28 +9,31 @@
   import axios from "axios"
 export default {
   name: "SelectComponent",
+  props: {
+    genreOf: String,
+    genres: Set,
+  },
   data() {
     return {
       baseUrl: "https://api.themoviedb.org/3",
-      genres: [],
+      genress: [],
       value: "",
     }
   },
-  props: { 
-    genreOf: {
-      type: String,
-      default: "movie",
+  computed: {
+    getGen() {
+      return [...this.genres]
     }
   },
   methods: {
     emitValue() {
       this.$emit("change-value", this.value)
-    }
+    },
   },
   mounted() {
     axios.get(`https://api.themoviedb.org/3/genre/${this.genreOf}/list?api_key=a69091a486f611ccfdfadd6ece3af0c2`)
     .then(res => {
-      this.genres = res.data.genres
+      this.genress = res.data.genres
     })
   }
 }
